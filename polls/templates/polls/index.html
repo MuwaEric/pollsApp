@@ -1,0 +1,170 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PollMaster</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: #333;
+            padding: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+        }
+
+        nav a:hover {
+            background-color: #4CAF50;
+            border-radius: 5px;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .feature {
+            margin: 20px 0;
+        }
+
+        .feature h3 {
+            color: #4CAF50;
+        }
+
+        .feature p {
+            margin: 10px 0;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 10px 20px;
+            color: white;
+            background-color: #4CAF50;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .cta-button:hover {
+            background-color: #45a049;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        .dashboard {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 10px;
+            flex: 1 1 calc(33.333% - 20px);
+            box-sizing: border-box;
+        }
+
+        .card h4 {
+            color: #333;
+            margin: 10px 0;
+        }
+
+        .card p {
+            color: #666;
+            margin: 10px 0;
+        }
+    </style>
+    <script>
+        function showAlert() {
+            alert('Hello! Welcome to PollMaster!');
+        }
+    </script>
+</head>
+<body onload="showAlert()">
+    <header>
+        <h1>PollMaster</h1>
+        <p>Welcome to my polls app</p>
+    </header>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Create Poll</a>
+        <a href="#">Explore Polls</a>
+        <a href="#">Results</a>
+        <a href="#">Contact Us</a>
+    </nav>
+    <div class="container">
+        <section class="feature">
+            <h3>Features</h3>
+            <p>Create Polls Easily: Craft your polls in minutes with our user-friendly interface.</p>
+            <p>Participate and Vote: Join thousands of users in voting on a wide range of topics.</p>
+            <p>Real-Time Results: Get instant updates on poll results as soon as votes are cast.</p>
+            <p>Secure and Anonymous: Your privacy is our priority. All votes are secure, and your identity is never revealed.</p>
+            <p>Customizable Polls: Personalize your polls with images, descriptions, and settings to suit your needs.</p>
+            <a href="#" class="cta-button">Get Started</a>
+        </section>
+        <section class="dashboard">
+            <div class="card">
+                <h4>Recent Polls</h4>
+                <p>Discover the latest polls and start voting today.</p>
+            </div>
+            <div class="card">
+                <h4>Popular Polls</h4>
+                <link rel="stylesheet" href="{% static 'polls/style.css' %}">
+
+                {% if latest_question_list %}
+                    <ul>
+                        {% for question in latest_question_list  %}
+                            <li><a href="{% url 'polls:detail' question.id %}"> {{ question.question_text }}</a> </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No polls are now available.</p>
+
+                {% endif %}
+            </div>
+            <div class="card">
+                <h4>Your Polls</h4>
+                <p>Manage your polls and track their performance.</p>
+            </div>
+        </section>
+    </div>
+    <footer>
+        <p>&copy; 2025 PollMaster. All rights reserved.</p>
+        <p>Email: support@muwa.com | Phone: +256-752 19229</p>
+    </footer>
+</body>
+</html>
+
+
